@@ -1,0 +1,30 @@
+/* ComponenteFecha.css */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: black;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: black;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field:disabled,
+input[type="date"]::-webkit-datetime-edit-day-field:disabled,
+input[type="date"]::-webkit-datetime-edit-year-field:disabled {
+    background-color: #ff0000; /* Cambia el color de fondo de los días deshabilitados a rojo */
+}
+
+/* Estilo personalizado para el día de hoy */
+.today-highlight {
+    background-color: #ff0000 !important; /* Cambia el color de fondo del día de hoy a rojo */
+    color: white !important;
+}
