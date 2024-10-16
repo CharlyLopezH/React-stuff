@@ -8,10 +8,10 @@ export const CrearSolicitud = ()=> {
     <>
     <div className="container">
         <h2>Crear Solicitud</h2>
-        <code>Módulo para realizar el trámite de Solicitud de Permisos</code>
+        <code>Tramitar Solicitud de Permisos</code>
         <hr/>
         <Saludo/>
-  <hr/>
+     <hr/>
         <Tabla/>
         <Botones/>
     </div>
