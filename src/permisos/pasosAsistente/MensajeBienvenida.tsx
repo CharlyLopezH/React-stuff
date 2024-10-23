@@ -4,11 +4,9 @@ export const MensajeBienvenida = () => {
     return (
         <>
          <div>
-        {/* <div>Hola</div>     */}
-        {/* <hr style={{ marginTop: '1px', marginBottom: '1px' }} /> */}
         <code>
-        Éste es el ASISTENTE que te guiará paso a paso para realizar una Solicitud de Permiso de Ausencia... Selecciona los conceptos que deseas tramitar y haz
-        Click en siguiente para continuar.
+        Hola Fulano de tal, usa esta interfaz para crear una solicitud seleccionando el o los conceptos que
+        quieres utilizar y da clic en iniciar.
         </code>
         <hr style={{ marginTop: '1px', marginBottom: '1px' }} />
          </div>

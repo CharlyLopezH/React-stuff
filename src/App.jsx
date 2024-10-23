@@ -1,10 +1,19 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+//import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const onHandleInputChange=({target})=>{
+
+    if (target.checked) {
+         setCount((count) => count + 1);
+    } else {
+      setCount((count) => count - 1);
+    }
+  }
 
   return (
     <>
@@ -17,10 +26,35 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+
+
+
+    <div>
+      Input
+      El valor del input 0 es:
+      <input type = "checkbox" 
+      onChange={onHandleInputChange}   
+      checked={false}
+      />
+      <p>El valor del input 1 es: {count} </p>
+      <input type= "checkbox" onChange={onHandleInputChange} />
+      <p>El valor del input 2 es: {count} </p>
+      <input type= "checkbox" onChange={onHandleInputChange} />
+      <p>El valor del input 3 es: {count} </p>
+      <input type= "checkbox" onChange={onHandleInputChange}/>
+      <p>El valor del input 4 es: {count} </p>
+    </div>
+
+
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button className= "btn btn-button btn-success" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+
+         <hr/>
+
+
+
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>

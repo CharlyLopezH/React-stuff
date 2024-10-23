@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Modal from 'react-modal';
 import '/src/App.css'; 
 import { BotonGenerico } from "./BotonGenerico";
-import { Asistente } from "./Asistente";
+import { AsistenteDinamico } from "./AsistenteDinamico";
 import { PantallaDummy } from "./PantallaDummy";
+import { BienvenidaAsistente } from "./BenvenidaAsistente";
 
 Modal.setAppElement('#root'); // Usa '#root' como selector
 
@@ -13,7 +14,7 @@ export const GrupoBotones = () => {
 
     const handleClick=(arg0: string)=> {
         setClickedButton(arg0); // Establece el botón clicado
-        console.log(`botón pushado: ${arg0}`);
+        //console.log(`botón pushado: ${arg0}`);
         if (arg0 == '0' || arg0=='1') setIsModalOpen(true); // Abre el componente modal
     }
 
@@ -50,7 +51,8 @@ export const GrupoBotones = () => {
             contentLabel="Acción del Botón"
             >
             {clickedButton=='0' && (  //boton Asistente fue presionado
-             <Asistente buttonId={clickedButton} onCloseModal={onCloseModal} />        
+            //  <AsistenteDinamico buttonId={clickedButton} onCloseModal={onCloseModal} />        
+            <BienvenidaAsistente buttonId={clickedButton} onCloseModal={onCloseModal} />
             )}
             {clickedButton=='1' && (  //Otro botón
              <PantallaDummy buttonId={clickedButton} onCloseModal={onCloseModal} />        

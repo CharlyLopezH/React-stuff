@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
-import { Paso0 } from './pasosAsistente/Paso0';
+import { PasoBienvenida } from './pasosAsistente/PasoBienvenida';
 
-export const Asistente = ({ buttonId, onCloseModal }) => {
+export const AsistenteDinamico = ({ totalPasos, onCloseModal }) => {
   const [step, setStep] = useState(1); // Estado para controlar el paso actual
-  const [maxSteps, setMaxSteps] = useState(6);
+  const [maxSteps, setMaxSteps] = useState(totalPasos);
+
+
+  // Función para generar dinámicamente el contenido de los pasos
+  const generateStepContents = (maxSteps: number): JSX.Element[] => {
+    console.log('Generando contenido dinámico');
+    const contents: JSX.Element[] = [];
+    for (let i = 1; i < maxSteps; i++) {
+      if (i === 0) {
+        contents.push(<PasoBienvenida key={i} dato={'dato'} />);
+      } else {
+        contents.push(<p key={i}>Paso {i + 1}: Contenido del paso {i + 1}.</p>);
+      }
+    }
+    return contents;
+  };
 
   // Arreglo de contenidos para cada paso
-  const stepContents = [
-    <Paso0 />,
-    <p>Paso 2: Ingresa la fecha de inicio y fin del permiso.</p>,
-    <p>Paso 3: Adjunta documentos justificantes (si es necesario).</p>,
-    <p>Paso 4: Revisa y confirma los detalles de tu solicitud.</p>,
-    <p>Paso 5: Enviar solicitud</p>
-  ];
+  const stepContents = generateStepContents(totalPasos);
+  console.log('arreglo de stepContents'+stepContents);
 
   // Función para ir al siguiente paso
   const nextStep = () => {
-    if (step < maxSteps) {
+    console.log('Estoy en el next step');
+    if (step < totalPasos) {
       setStep(step + 1);
     }
   };
@@ -41,8 +52,8 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
     <>
       <div>
         <div className="bg-light p-1 d-inline-block rounded w-100 d-flex justify-content-center align-items-center">
-          Asistente
-          <button
+          step {step} / maxSteps {totalPasos}
+          {/* <button
             className="btn-close ms-auto"
             type="button"
             aria-label="Close"
@@ -52,7 +63,7 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
               left: '10px',
               fontSize: '1rem'
             }}
-          ></button>
+          ></button> */}
         </div>
 
         {/* Contenido del paso actual */}
@@ -70,7 +81,8 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
           <button
             onClick={nextStep}
             className="btn btn-primary me-2"
-            disabled={step >= maxSteps}
+            //disabled={step >= maxSteps}
+            disabled={totalPasos == step}
           >
             <i className="bi bi-skip-end"></i>
           </button>
@@ -78,7 +90,8 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
           <button
             onClick={procesar}
             className="btn btn-success me-2"
-            hidden={step !== maxSteps}
+            //hidden={step <= totalPasos}
+            disabled={totalPasos==0}
           >
             <i className="bi bi-send-check"></i>
           </button>
