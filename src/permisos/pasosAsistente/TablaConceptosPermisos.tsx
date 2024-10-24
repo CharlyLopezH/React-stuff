@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { ConceptoCheck } from "./ConceptoCheck";
-import { ConceptosGen } from "./ConceptosGen";
 import { ConceptosItems } from "./ConceptosItems";
 import { useConceptosPermisos } from "../../hooks/useConceptosPermisos";
 
-export const TablaConceptosPermisos = ({ onHandleClick, onCloseModal }) => {
+
+export const TablaConceptosPermisos = ({
+  onHandleClick,
+  onCloseModal,
+  setMostrarDummy,
+}) => {
   // Estado para almacenar los IDs de los conceptos seleccionados
   const [selectedConcepts, setSelectedConcepts] = useState<any[]>([]);
-    
   const conceptosPermisos = useConceptosPermisos();
-  //console.log('XXXX'+onHandleClick);
+  const [mostrarAsistente, setMostrarAsistente] = useState(false);
 
   // Función para manejar los cambios de selección de los checkboxes
-  const onHandleClickEvent = (id: number,nombre: any, codigo:any, checked: boolean  ) => {
+  const onHandleClickEvent = (
+    id: number,
+    nombre: any,
+    codigo: any,
+    checked: boolean
+  ) => {
     console.log(`Función onclick de los checkboxes... id Seleccionada: ${id} ${nombre}`);
-    //console.log(`Control Id:${id}, Chequeado: ${checked} `);
-    console.log(`Lo que llega: ${id}, ${codigo}, ${nombre}` );
+    //Nota importante**
+    //Para formar un arreglo con alguno de los elementos solamente cabmiarlo en el return; en este caso es código
+    //console.log(`Lo que llega con el click: ${id}, ${codigo}, ${nombre}` );
     setSelectedConcepts((prevSelected) => {
       if (checked) {
-        console.log(`Agregando el elemento código es ${codigo} ` );
-        
-        return [...prevSelected, codigo]; // Agrega el ID si está seleccionado
+        //console.log(`Agregando el elemento código es ${codigo} ` );
+        return [...prevSelected, id]; // Agrega el ID si está seleccionado
       } else {
-        console.log(`Quitando el id/concepto ${codigo}`);
-        
-        return prevSelected.filter((item) => item !== codigo); // Elimina el ID si está desmarcado
+        //console.log(`Quitando el id/concepto ${codigo}`);
+        return prevSelected.filter((item) => item !== id); // Elimina el ID si está desmarcado
       }
     });
   };
 
-  console.log(`Contador de pasos totales: ${selectedConcepts.length}`);
+  //console.log(`Contador de pasos totales: ${selectedConcepts.length}`);
   //pasos=selectedConcepts.length;
   //console.log(`Pasos Determinados: ${pasos}`);
 
@@ -38,16 +44,24 @@ export const TablaConceptosPermisos = ({ onHandleClick, onCloseModal }) => {
     onHandleClick(selectedConcepts);
   }, [selectedConcepts, onHandleClick]);
 
-  
-
-  const continuar = () => {
-    console.log(
-      `Iniciar procesamiento de solicitud con:  ${selectedConcepts}`
-    );
+  // Función para iniciar el asistente
+  const iniciarAsistente = () => {
+    console.log(`Llamar al asistente dinámico:  ${selectedConcepts}`);
+    //setMostrarAsistente(true); // Cambia el estado para mostrar el asistente
+    //onCloseModal();
+    setMostrarDummy(true);
   };
 
   return (
     <>
+      <div>
+        <code>
+          Hola Fulano de tal, usa esta interfaz para crear una solicitud
+          seleccionando el o los conceptos que quieres utilizar y da clic en
+          iniciar.
+        </code>
+        <hr style={{ marginTop: "1px", marginBottom: "1px" }} />
+      </div>
       <table className="table">
         <thead className="table-light">
           <tr>
@@ -72,21 +86,19 @@ export const TablaConceptosPermisos = ({ onHandleClick, onCloseModal }) => {
       </table>
       <div className="bg-light p-1 d-inline-block w-100 d-flex justify-content-center align-items-center border-top border-bottom border-gray p-1 mt-1">
         <button
-          onClick={continuar}
+          onClick={iniciarAsistente}
           className="btn btn-success me-2"
           //hidden={step <= totalPasos}
           disabled={selectedConcepts.length == 0}
         >
-        <i className="bi bi-lightning-fill"></i>
-         Iniciar
+          <i className="bi bi-lightning-fill"></i>
+          Iniciar
         </button>
 
-       
         <button onClick={onCloseModal} className="btn btn-info me-2">
-        <i className="bi bi-door-closed-fill"></i> 
-            Cerrar            
-          </button>
-
+          <i className="bi bi-door-closed-fill"></i>
+          Cerrar
+        </button>
       </div>
     </>
   );

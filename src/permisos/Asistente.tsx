@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Paso0 } from './pasosAsistente/Paso0';
+//import { Paso0 } from './pasosAsistente/Paso0';
 
 export const Asistente = ({ buttonId, onCloseModal }) => {
   const [step, setStep] = useState(1); // Estado para controlar el paso actual
   const [maxSteps, setMaxSteps] = useState(6);
 
   // Arreglo de contenidos para cada paso
-  const stepContents = [
-    <Paso0 />,
-    <p>Paso 2: Ingresa la fecha de inicio y fin del permiso.</p>,
-    <p>Paso 3: Adjunta documentos justificantes (si es necesario).</p>,
-    <p>Paso 4: Revisa y confirma los detalles de tu solicitud.</p>,
-    <p>Paso 5: Enviar solicitud</p>
-  ];
+  // const stepContents = [
+  //   <Paso0 />,
+  //   <p>Paso 2: Ingresa la fecha de inicio y fin del permiso.</p>,
+  //   <p>Paso 3: Adjunta documentos justificantes (si es necesario).</p>,
+  //   <p>Paso 4: Revisa y confirma los detalles de tu solicitud.</p>,
+  //   <p>Paso 5: Enviar solicitud</p>
+  // ];
 
   // Función para ir al siguiente paso
   const nextStep = () => {
@@ -29,9 +29,9 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
   };
 
   // Renderizar contenido basado en el paso actual
-  const renderStepContent = () => {
-    return stepContents[step - 1] || null;
-  };
+  // const renderStepContent = () => {
+  //   return stepContents[step - 1] || null;
+  // };
 
   const procesar = () => {
     console.log('Enviaré solicitud');
@@ -40,8 +40,9 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
   return (
     <>
       <div>
+      <span className="badge badge-pill badge-primary">Primary</span>
         <div className="bg-light p-1 d-inline-block rounded w-100 d-flex justify-content-center align-items-center">
-          Asistente
+          Asistente para Solicitar Permisos de Ausencia
           <button
             className="btn-close ms-auto"
             type="button"
@@ -56,7 +57,7 @@ export const Asistente = ({ buttonId, onCloseModal }) => {
         </div>
 
         {/* Contenido del paso actual */}
-        {renderStepContent()}
+        {/* {renderStepContent()} */}
 
         {/* Controles del asistente */}
         <div className="bg-light p-1 d-inline-block w-100 d-flex justify-content-center align-items-center border-top border-bottom border-gray p-1 mt-1">

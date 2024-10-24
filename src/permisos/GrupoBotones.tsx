@@ -4,7 +4,7 @@ import '/src/App.css';
 import { BotonGenerico } from "./BotonGenerico";
 import { AsistenteDinamico } from "./AsistenteDinamico";
 import { PantallaDummy } from "./PantallaDummy";
-import { BienvenidaAsistente } from "./BenvenidaAsistente";
+import { BienvenidaAsistente } from "./BienvenidaAsistente";
 
 Modal.setAppElement('#root'); // Usa '#root' como selector
 

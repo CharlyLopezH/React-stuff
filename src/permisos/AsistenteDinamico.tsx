@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PasoBienvenida } from './pasosAsistente/PasoBienvenida';
 
-export const AsistenteDinamico = ({ totalPasos, onCloseModal }) => {
+export const AsistenteDinamico = ({ arregloConceptos:any,totalPasos, onCloseModal }) => {
   const [step, setStep] = useState(1); // Estado para controlar el paso actual
   const [maxSteps, setMaxSteps] = useState(totalPasos);
 
